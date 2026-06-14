@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CPL</title>
+
+<link rel="icon" href="DDB68CF8-B74C-4DDE-8C35-A26D8721C2DA.jpeg">
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,31 +55,7 @@ body::before{
         transparent 1px
     );
     z-index:999;
-}
-
-/* COVER */
-
-#cover{
-    position:fixed;
-    inset:0;
-    z-index:10000;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    transition:opacity 1s ease;
-}
-
-#cover.hidden{
-    opacity:0;
-    pointer-events:none;
-}
-
-#cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+;
 }
 
 /* MAIN SITE */
@@ -219,17 +204,6 @@ nav{
 
     <nav>
 
-        <div class="logo" onclick="showPage('home')">
-            CPL
-        </div>
-
-        <div class="nav-links">
-            <a onclick="showPage('shop')">SHOP</a>
-            <a onclick="showPage('music')">MUSIC</a>
-        </div>
-
-    </nav>
-
     <!-- HOME -->
 
     <div id="home" class="page active">
@@ -245,7 +219,7 @@ nav{
     <div id="shop" class="page">
 
         <div class="shop-text">
-            CPL SHOP IS COMING SOON
+            CPL SHOPS COMING SOON
         </div>
 
     </div>
