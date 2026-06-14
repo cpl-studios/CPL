@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>CPL</title>
 
 <link rel="icon" href="DDB68CF8-B74C-4DDE-8C35-A26D8721C2DA.jpeg">
-
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
-</head>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -30,9 +19,6 @@
 html,body{
     width:100%;
     height:100%;
-}
-
-body{
     background:#000;
     color:#fff;
     font-family:'IBM Plex Mono', monospace;
@@ -40,88 +26,50 @@ body{
     overflow:hidden;
 }
 
-/* FILM GRAIN */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    opacity:.02;
-    pointer-events:none;
-    background-image:
-    repeating-radial-gradient(
-        circle at 0 0,
-        white 0,
-        transparent 1px
-    );
-    z-index:999;
-;
-}
-
-/* MAIN SITE */
-
+/* SITE */
 #site{
-    opacity:0;
-    transition:opacity 1s ease;
-}
-
-#site.visible{
-    opacity:1;
+    width:100%;
+    height:100%;
 }
 
 /* NAV */
-
 nav{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    padding:32px;
+    padding:24px 32px;
     display:flex;
     justify-content:space-between;
-    z-index:100;
+    z-index:10;
 }
 
-.logo{
-    cursor:pointer;
-    letter-spacing:.15em;
-}
-
-.nav-links{
-    display:flex;
-    gap:32px;
-}
-
-.nav-links a{
+nav a{
     color:#fff;
     text-decoration:none;
+    margin-left:24px;
     cursor:pointer;
-    transition:opacity .3s ease;
+    opacity:0.8;
+    transition:0.3s;
 }
 
-.nav-links a:hover{
-    opacity:.4;
+nav a:hover{
+    opacity:0.3;
 }
 
 /* PAGES */
-
 .page{
     position:absolute;
     inset:0;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
 
     opacity:0;
     visibility:hidden;
-
     transform:translateY(10px);
-
-    transition:
-    opacity .5s ease,
-    transform .5s ease,
-    visibility .5s;
+    transition:0.5s ease;
 }
 
 .page.active{
@@ -131,130 +79,89 @@ nav{
 }
 
 /* HOME */
-
 .home-title{
-    font-size:clamp(5rem,15vw,12rem);
-    font-weight:400;
-    letter-spacing:.08em;
-
-    animation:float 8s ease-in-out infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-4px);}
-    100%{transform:translateY(0);}
+    font-size:clamp(4rem,12vw,10rem);
+    letter-spacing:0.08em;
 }
 
 /* SHOP */
-
 .shop-text{
     font-size:1rem;
-    letter-spacing:.08em;
+    opacity:0.7;
 }
 
 /* MUSIC */
-
-.music{
-    text-align:center;
-}
-
 .music h1{
     font-size:2rem;
-    font-weight:400;
-    margin-bottom:32px;
+    margin-bottom:20px;
 }
 
 .music p{
-    margin:10px 0;
-    letter-spacing:.08em;
+    margin:6px 0;
+    opacity:0.8;
 }
 
 .presave{
-    display:inline-block;
-    margin-top:24px;
+    margin-top:20px;
+    padding:10px 18px;
     border:1px solid #fff;
-    padding:12px 20px;
-    color:#fff;
     text-decoration:none;
-    transition:.3s;
+    color:#fff;
+    transition:0.3s;
 }
 
 .presave:hover{
     background:#fff;
     color:#000;
 }
-
 </style>
 </head>
+
 <body>
-
-</div>
-
-<!-- SITE -->
 
 <div id="site">
 
+    <!-- NAV -->
     <nav>
+        <div>CPL</div>
+        <div>
+            <a onclick="showPage('home')">Home</a>
+            <a onclick="showPage('shop')">Shop</a>
+            <a onclick="showPage('music')">Music</a>
+        </div>
+    </nav>
 
     <!-- HOME -->
-
     <div id="home" class="page active">
-
-        <div class="home-title">
-            CPL
-        </div>
-
+        <div class="home-title">CPL</div>
     </div>
 
     <!-- SHOP -->
-
     <div id="shop" class="page">
-
-        <div class="shop-text">
-            CPL SHOPS COMING SOON
-        </div>
-
+        <div class="shop-text">CPL SHOP COMING SOON</div>
     </div>
 
     <!-- MUSIC -->
-
     <div id="music" class="page">
-
         <div class="music">
-
             <h1>TXY // TXY</h1>
-
             <p>PRE-SAVE</p>
-
             <p>RELEASE DATE</p>
-
             <p>10 07 26</p>
 
-            <a class="presave" href="#">
-                PRE-SAVE
-            </a>
-
+            <a class="presave" href="#">PRE-SAVE</a>
         </div>
-
     </div>
 
 </div>
 
 <script>
-
-});
-
 function showPage(id){
-
     document.querySelectorAll('.page').forEach(page=>{
         page.classList.remove('active');
     });
-
     document.getElementById(id).classList.add('active');
-
 }
-
 </script>
 
 </body>
