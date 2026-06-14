@@ -11,156 +11,294 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: "IBM Plex Mono", monospace;
-    background: #ffffff;
-    color: #000000;
-    text-transform: uppercase;
-    overflow: hidden;
+html,body{
+    width:100%;
+    height:100%;
 }
 
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 24px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
-    z-index: 1000;
+body{
+    background:#000;
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    overflow:hidden;
 }
 
-.logo {
-    cursor: pointer;
+/* FILM GRAIN */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    opacity:.02;
+    pointer-events:none;
+    background-image:
+    repeating-radial-gradient(
+        circle at 0 0,
+        white 0,
+        transparent 1px
+    );
+    z-index:999;
 }
 
-.nav-links {
-    display: flex;
-    gap: 24px;
+/* COVER */
+
+#cover{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:opacity 1s ease;
 }
 
-.nav-links a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
+#cover.hidden{
+    opacity:0;
+    pointer-events:none;
 }
 
-.page {
-    display: none;
-    height: 100vh;
-    padding: 100px 32px 32px;
+#cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.page.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* MAIN SITE */
+
+#site{
+    opacity:0;
+    transition:opacity 1s ease;
 }
 
-h1 {
-    font-size: clamp(4rem, 12vw, 10rem);
-    font-weight: 400;
-    line-height: 0.9;
+#site.visible{
+    opacity:1;
 }
 
-.subtitle {
-    margin-top: 16px;
-    font-size: 0.9rem;
+/* NAV */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:32px;
+    display:flex;
+    justify-content:space-between;
+    z-index:100;
 }
 
-.content {
-    max-width: 700px;
-    line-height: 1.8;
+.logo{
+    cursor:pointer;
+    letter-spacing:.15em;
 }
 
-.release {
-    margin-top: 32px;
+.nav-links{
+    display:flex;
+    gap:32px;
 }
 
-.button {
-    display: inline-block;
-    margin-top: 24px;
-    padding: 12px 18px;
-    border: 1px solid #000;
-    text-decoration: none;
-    color: #000;
-    transition: 0.2s;
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    cursor:pointer;
+    transition:opacity .3s ease;
 }
 
-.button:hover {
-    background: #000;
-    color: #fff;
+.nav-links a:hover{
+    opacity:.4;
 }
 
-.footer {
-    position: fixed;
-    bottom: 24px;
-    left: 32px;
-    font-size: 0.8rem;
+/* PAGES */
+
+.page{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(10px);
+
+    transition:
+    opacity .5s ease,
+    transform .5s ease,
+    visibility .5s;
 }
+
+.page.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+/* HOME */
+
+.home-title{
+    font-size:clamp(5rem,15vw,12rem);
+    font-weight:400;
+    letter-spacing:.08em;
+
+    animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-4px);}
+    100%{transform:translateY(0);}
+}
+
+/* SHOP */
+
+.shop-text{
+    font-size:1rem;
+    letter-spacing:.08em;
+}
+
+/* MUSIC */
+
+.music{
+    text-align:center;
+}
+
+.music h1{
+    font-size:2rem;
+    font-weight:400;
+    margin-bottom:32px;
+}
+
+.music p{
+    margin:10px 0;
+    letter-spacing:.08em;
+}
+
+.presave{
+    display:inline-block;
+    margin-top:24px;
+    border:1px solid #fff;
+    padding:12px 20px;
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.presave:hover{
+    background:#fff;
+    color:#000;
+}
+
 </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo" onclick="showPage('home')">CPL</div>
+<!-- COVER -->
 
-    <div class="nav-links">
-        <a onclick="showPage('shop')">SHOP</a>
-        <a onclick="showPage('music')">MUSIC</a>
-    </div>
-</nav>
+<div id="cover">
 
-<div id="home" class="page active">
-    <h1>CPL</h1>
-    <p class="subtitle">MUSIC & FILM STUDIO</p>
+    <!-- CHANGE THIS FILE NAME -->
+    <img src="cover.jpg" alt="CPL">
+
 </div>
 
-<div id="shop" class="page">
-    <h1>SHOP</h1>
+<!-- SITE -->
 
-    <div class="content">
-        <p>CPL SHOP IS COMING SOON.</p>
+<div id="site">
+
+    <nav>
+
+        <div class="logo" onclick="showPage('home')">
+            CPL
+        </div>
+
+        <div class="nav-links">
+            <a onclick="showPage('shop')">SHOP</a>
+            <a onclick="showPage('music')">MUSIC</a>
+        </div>
+
+    </nav>
+
+    <!-- HOME -->
+
+    <div id="home" class="page active">
+
+        <div class="home-title">
+            CPL
+        </div>
+
     </div>
-</div>
 
-<div id="music" class="page">
-    <h1>MUSIC</h1>
+    <!-- SHOP -->
 
-    <div class="release">
-        <p>TXY — TXY</p>
-        <br>
-        <p>PRE-SAVE</p>
-        <br>
-        <p>RELEASE DATE</p>
-        <p>10.07.26</p>
+    <div id="shop" class="page">
 
-        <a href="#" class="button">PRE-SAVE</a>
+        <div class="shop-text">
+            CPL SHOP IS COMING SOON
+        </div>
+
     </div>
-</div>
 
-<div class="footer">
-    © CPL
+    <!-- MUSIC -->
+
+    <div id="music" class="page">
+
+        <div class="music">
+
+            <h1>TXY — TXY</h1>
+
+            <p>PRE-SAVE</p>
+
+            <p>RELEASE DATE</p>
+
+            <p>10.07.26</p>
+
+            <a class="presave" href="#">
+                PRE-SAVE
+            </a>
+
+        </div>
+
+    </div>
+
 </div>
 
 <script>
-function showPage(pageId) {
-    const pages = document.querySelectorAll('.page');
 
-    pages.forEach(page => {
+const cover = document.getElementById('cover');
+const site = document.getElementById('site');
+
+cover.addEventListener('click', () => {
+
+    cover.classList.add('hidden');
+
+    setTimeout(() => {
+        site.classList.add('visible');
+    }, 400);
+
+});
+
+function showPage(id){
+
+    document.querySelectorAll('.page').forEach(page=>{
         page.classList.remove('active');
     });
 
-    document.getElementById(pageId).classList.add('active');
+    document.getElementById(id).classList.add('active');
+
 }
+
 </script>
 
 </body>
