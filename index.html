@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CPL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "IBM Plex Mono", monospace;
+    background: #ffffff;
+    color: #000000;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    z-index: 1000;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.page {
+    display: none;
+    height: 100vh;
+    padding: 100px 32px 32px;
+}
+
+.page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 400;
+    line-height: 0.9;
+}
+
+.subtitle {
+    margin-top: 16px;
+    font-size: 0.9rem;
+}
+
+.content {
+    max-width: 700px;
+    line-height: 1.8;
+}
+
+.release {
+    margin-top: 32px;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 18px;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #000;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background: #000;
+    color: #fff;
+}
+
+.footer {
+    position: fixed;
+    bottom: 24px;
+    left: 32px;
+    font-size: 0.8rem;
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo" onclick="showPage('home')">CPL</div>
+
+    <div class="nav-links">
+        <a onclick="showPage('shop')">SHOP</a>
+        <a onclick="showPage('music')">MUSIC</a>
+    </div>
+</nav>
+
+<div id="home" class="page active">
+    <h1>CPL</h1>
+    <p class="subtitle">MUSIC & FILM STUDIO</p>
+</div>
+
+<div id="shop" class="page">
+    <h1>SHOP</h1>
+
+    <div class="content">
+        <p>CPL SHOP IS COMING SOON.</p>
+    </div>
+</div>
+
+<div id="music" class="page">
+    <h1>MUSIC</h1>
+
+    <div class="release">
+        <p>TXY — TXY</p>
+        <br>
+        <p>PRE-SAVE</p>
+        <br>
+        <p>RELEASE DATE</p>
+        <p>10.07.26</p>
+
+        <a href="#" class="button">PRE-SAVE</a>
+    </div>
+</div>
+
+<div class="footer">
+    © CPL
+</div>
+
+<script>
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
